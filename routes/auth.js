@@ -7,6 +7,8 @@ router
   .post("/create", create)
   .put("/update/:id", update)
   .delete("/delete/:id", deleted)
+  
+module.exports = router
 
 
 
