@@ -28,6 +28,7 @@ const productSchema = new mongoose.Schema({
     timestamps :  true
 });
 
-
-
+productSchema.method.setImgUrl = function setImageUrl (filename){
+  this.image = `${process.env.HOST}:${process.env.PORT}/public/product/${filename}`
+}
 module.exports = mongoose.model('Product', productSchema)
