@@ -1,4 +1,5 @@
 require("dotenv").config();
+const path = require('path')
 const createError = require("http-errors");
 const express = require("express");
 const logger = require("morgan");
@@ -6,6 +7,7 @@ const connectDB = require("./database/config");
 const app = express();
 connectDB();
 app
+  .use(express.static(path.join(__dirname, "./public")))
   .use(logger("dev"))
   .use(express.json())
   .use(express.urlencoded({ extended: false }))
