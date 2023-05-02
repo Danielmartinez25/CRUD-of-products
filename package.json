@@ -2,7 +2,7 @@
   "name": "crud-products",
   "version": "1.0.0",
   "description": "",
-  "main": "./src/app.js",
+  "main": "app.js",
   "scripts": {
     "dev": "nodemon app.js"
   },

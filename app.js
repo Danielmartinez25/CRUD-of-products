@@ -11,6 +11,11 @@ app
   .use(logger("dev"))
   .use(express.json())
   .use(express.urlencoded({ extended: false }))
+  app.listen(process.env.PORT, () => {
+    console.log(
+      `Servidor corriendo en el puerto http://localhost:${process.env.PORT}`
+    );
+  });
 
 /* RUTAS */
 app
