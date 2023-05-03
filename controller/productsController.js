@@ -86,14 +86,26 @@ module.exports = {
   deleted: async (req, res) => {
     try {
       const { id } = req.params;
-      await Product.deleteOne({_id : id});
+      await Product.deleteOne({ _id: id });
       return res.status(200).json({
         ok: true,
         status: 200,
-        msg : 'Product delete'
+        msg: "Product delete",
       });
     } catch (error) {
-      return errorStatus(res,error,'Delete')
+      return errorStatus(res, error, "Delete");
+    }
+  },
+  deleteMany: async (req, res) => {
+    try {
+      await Product.deleteMany()
+      return res.status(200).json({
+        ok: true,
+        status: 200,
+        msg: "Products delete",
+      });
+    } catch (error) {
+      return errorStatus(res, error, "Delete Many");
     }
   },
 };
