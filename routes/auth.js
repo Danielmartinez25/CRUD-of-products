@@ -1,12 +1,12 @@
 const express = require('express')
 const router  = express.Router()
 const {list,create,update,deleted} = require('../controller/productsController')
-const  multer= require('../middlewares/multer')
+const image = require("../middlewares/multer");
 router
   .get("/list", list)
-  .post("/create",multer.single('file'), create)
+  .post("/create", image.single("file"), create)
   .put("/update/:id", update)
-  .delete("/delete/:id", deleted)
+  .delete("/delete/:id", deleted);
   
 module.exports = router
 

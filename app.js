@@ -7,10 +7,12 @@ const connectDB = require("./database/config");
 const app = express();
 connectDB();
 app
-  .use(express.static(path.join(__dirname, "./public")))
+.use(express.static(__dirname))
   .use(logger("dev"))
   .use(express.json())
   .use(express.urlencoded({ extended: false }))
+  /*   .use(express.static(path.join(__dirname, "./public")))
+ */
   app.listen(process.env.PORT, () => {
     console.log(
       `Servidor corriendo en el puerto http://localhost:${process.env.PORT}`
@@ -20,6 +22,7 @@ app
 /* RUTAS */
 app
   .use("/api/auth", require("./routes/auth"))
+  .use('/api/test',require('./routes/test'))
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
