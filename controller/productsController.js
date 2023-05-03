@@ -16,12 +16,11 @@ module.exports = {
   },
   create: async (req, res) => {
     try {
-      const { name, price, discount, description, file} = req.body;
+      const { name, price, discount, description} = req.body;
             if (
-              [name, description, price,discount,file].includes("") ||
+              [name, description, price,discount].includes("") ||
               !name ||
               !description ||
-              !file ||
               !discount ||
               !price
             )

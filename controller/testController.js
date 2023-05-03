@@ -1,5 +1,4 @@
 const errorStatus = require("../helpers/errorStatus")
-const Product = require('../database/models/product')
 module.exports = {
     multer : async (req,res) => {
         try {
