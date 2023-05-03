@@ -68,12 +68,12 @@ module.exports = {
       if (!ObjectId.isValid(id)) throw createError(400, "No es un ID válido");
       const product = await Product.findById(id);
       if (!product) throw createError(404, "Producto no encontrado");
-      const {name,price,discount,description} = req.body;
-      product.name = name ;
-      product.price = price ;
-      product.discount = discount ;
-      product.description = description ;
-      const productUpdate = await product.save()
+      const { name, price, discount, description } = req.body;
+      product.name = name;
+      product.price = price;
+      product.discount = discount;
+      product.description = description;
+      const productUpdate = await product.save();
       return res.status(200).json({
         ok: true,
         status: 200,
@@ -85,6 +85,15 @@ module.exports = {
   },
   deleted: async (req, res) => {
     try {
-    } catch (error) {}
+      const { id } = req.params;
+      await Product.deleteOne({_id : id});
+      return res.status(200).json({
+        ok: true,
+        status: 200,
+        msg : 'Product delete'
+      });
+    } catch (error) {
+      return errorStatus(res,error,'Delete')
+    }
   },
 };
