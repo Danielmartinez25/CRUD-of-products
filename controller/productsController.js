@@ -4,7 +4,7 @@ const createError = require("http-errors");
 const ObjectId = require("mongoose").Types.ObjectId;
 
 module.exports = {
-  list: async (req, res) => {
+  productOne: async (req, res) => {
     try {
       const { id } = req.params;
       if (!ObjectId.isValid(id)) throw createError(400, "No es un ID válido");
@@ -15,7 +15,19 @@ module.exports = {
         data: product,
       });
     } catch (error) {
-      return errorStatus(res, error, "List");
+      return errorStatus(res, error, "product One");
+    }
+  },
+  listProduct: async (req, res) => {
+    try {
+      const product = await Product.find().select('name price');
+      return res.status(200).json({
+        ok: true,
+        status: 200,
+        data: product,
+      });
+    } catch (error) {
+      return errorStatus(res, error, "List ");
     }
   },
   create: async (req, res) => {
@@ -52,7 +64,17 @@ module.exports = {
   },
   update: async (req, res) => {
     try {
-    } catch (error) {}
+      const {id} = req.params
+      const product = Product.updateOne({_id : id})
+      console.log(product)
+            return res.status(200).json({
+              ok: true,
+              status: 200,
+              data: product,
+            });
+    } catch (error) {
+      return errorStatus(res,error, 'Update')
+    }
   },
   deleted: async (req, res) => {
     try {
